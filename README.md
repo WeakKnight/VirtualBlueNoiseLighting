@@ -2,6 +2,12 @@
 
 ![](Teaser.png)
 
+## Introduction
+- This repo includes the source code for the following HPG 2022 paper
+
+> **Virtual Blue Noise Lighting**<br>
+> Tianyu Li*, Wenyou Wang*, Daqi Lin, Cem Yuksel<br>
+> (*Joint first authors) <br>
 > https://graphics.cs.utah.edu/research/projects/virtual-blue-noise-lighting/
 
 Virtual Blue Noise Lighting is a rendering pipeline for estimating indirect illumination with a blue noise distribution of virtual lights. Our pipeline is designed for virtual lights with non-uniform emission profiles that are more expensive to store, but required for properly and efficiently handling specular transport.
@@ -12,6 +18,6 @@ For computing the virtual light emission profiles, we present a photon splitting
 
 We show that our method significantly outperforms path tracing and prior work in virtual lights in terms of both performance and image quality, producing a fast but biased estimate of global illumination.
 
-#### TODO:
+## Todo:
 * Add scripts to automatically download medias and run demo scenes. 
 * Clean the code and fix some confusing variable names.
