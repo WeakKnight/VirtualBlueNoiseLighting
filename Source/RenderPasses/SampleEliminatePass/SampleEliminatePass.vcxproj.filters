@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="SampleEliminatePass.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SampleEliminatePass.h" />
+    <ClInclude Include="cyCore.h" />
+    <ClInclude Include="cyHeap.h" />
+    <ClInclude Include="cyPointCloud.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="nanoflann.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ShaderSource Include="SampleEliminate.cs.slang" />
+    <ShaderSource Include="TileVirtualLightValidation.cs.slang" />
+    <ShaderSource Include="TileVirtualLightDilation.cs.slang" />
+    <ShaderSource Include="TileVirtualLightCountWeight.cs.slang" />
+  </ItemGroup>
+</Project>

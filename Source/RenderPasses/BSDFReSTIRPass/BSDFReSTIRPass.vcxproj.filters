@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="BSDFReSTIRPass.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BSDFReSTIRPass.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ShaderSource Include="BSDFReSTIRInitialSampling.cs.slang" />
+    <ShaderSource Include="BSDFReSTIRShading.cs.slang" />
+    <ShaderSource Include="BSDFReSTIR.slang" />
+    <ShaderSource Include="BSDFReSTIRTemporalResampling.cs.slang" />
+    <ShaderSource Include="BSDFReSTIRSpatialResampling.cs.slang" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="VPLReSTIRPass.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="VPLReSTIRPass.h" />
+    <ClInclude Include="cyCore.h" />
+    <ClInclude Include="cyPointCloud.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ShaderSource Include="VPLReSTIRShadingPass.cs.slang" />
+    <ShaderSource Include="RadiusWritePass.cs.slang" />
+    <ShaderSource Include="VPLReSTIRInitialSampling.cs.slang" />
+    <ShaderSource Include="VPLReSTIRTemporalResampling.cs.slang" />
+    <ShaderSource Include="VPLReSTIRSpatialResampling.cs.slang" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,3 @@
+#pragma once
+
+#define ENABLE_SOFTWARE_BILINEAR 1
