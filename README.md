@@ -2,7 +2,7 @@
 
 ![](Teaser.png)
 
-Source Code for HPG 2022 Paper ["Virtual Blue Noise Lighting"](https://graphics.cs.utah.edu/research/projects/virtual-blue-noise-lighting/)
+> https://graphics.cs.utah.edu/research/projects/virtual-blue-noise-lighting/
 
 Virtual Blue Noise Lighting is a rendering pipeline for estimating indirect illumination with a blue noise distribution of virtual lights. Our pipeline is designed for virtual lights with non-uniform emission profiles that are more expensive to store, but required for properly and efficiently handling specular transport.
 
