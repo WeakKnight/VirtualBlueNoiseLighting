@@ -35,7 +35,7 @@
 
 #define _ENABLE_NVAPI 1 // Set this to 1 to enable NVIDIA specific DX extensions. Make sure you have the NVAPI package in your 'Externals' directory. View the readme for more information.
 #define _ENABLE_CUDA 0 // Set this to 1 to enable CUDA use and CUDA/DX interoperation. Make sure you have the CUDA SDK package in your 'Externals' directory. View the readme for more information.
-#define _ENABLE_OPTIX 1 // Set this to 1 to enable CUDA use and CUDA/DX interoperation. Make sure you have the CUDA SDK package in your 'Externals' directory. View the readme for more information.
+#define _ENABLE_OPTIX 0 // Set this to 1 to enable CUDA use and CUDA/DX interoperation. Make sure you have the CUDA SDK package in your 'Externals' directory. View the readme for more information.
 
-#define FALCOR_ENABLE_NRD               1 // Set this to 1 to enable NRD. Make sure you have the NRD SDK package in your `Externals` directory. View the readme for more information.
+#define FALCOR_ENABLE_NRD               0 // Set this to 1 to enable NRD. Make sure you have the NRD SDK package in your `Externals` directory. View the readme for more information.
 #define FALCOR_ENABLE_DLSS              0 // Set this to 1 to enable DLSS. Make sure you have the DLSS SDK package in your `Externals` directory. View the readme for more information.

@@ -18,6 +18,20 @@ For computing the virtual light emission profiles, we present a photon splitting
 
 We show that our method significantly outperforms path tracing and prior work in virtual lights in terms of both performance and image quality, producing a fast but biased estimate of global illumination.
 
+## Prerequisites
+- Windows 10 version 20H2 or newer
+- Visual Studio 2019
+- [Windows 10 SDK version 10.0.19041.1 Or Newer] (https://developer.microsoft.com/en-us/windows/downloads/sdk-archive)
+- NVIDIA driver 466.11 or newer
+- RTX 2060 or Higher (NVIDIA graphics card with raytracing support)
+- Get NVAPI, head over to https://developer.nvidia.com/nvapi and download the latest version of NVAPI. Create a folder called `.packman` under `Source/Externals`, Extract the content of the zip file into `Source/Externals/.packman/` and rename `Rxxx-developer` to `nvapi`.
+
+## How to compile
+- Make sure you have NVAPI in `Source/Externals/.packman/` 
+- Open Falcor.sln and Build Solution in configuration ReleaseD3D12
+
+## Run the demo
+- execute `RunTeaserImageOurs.bat`
+
 ## Todo:
-* Add scripts to automatically download medias and run demo scenes. 
 * Clean the code and fix some confusing variable names.

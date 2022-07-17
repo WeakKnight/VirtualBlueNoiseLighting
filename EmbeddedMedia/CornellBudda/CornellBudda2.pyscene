@@ -1,0 +1,14 @@
+# Load FBX
+sceneBuilder.setSpecGlossWorkflow(True)
+sceneBuilder.importScene('CornellBudda2.obj')
+
+m = sceneBuilder.getMaterial('TB')
+m.specularParams = float4(0.726, 0.726, 0.726, 0.8)
+
+# Add camera
+camera = Camera()
+camera.position = float3(0.40879,0.96649,2.3466)
+camera.target = float3(0.34585,0.88148,1.352185)
+camera.up = float3(0.000065,0.9999,0.001105)
+camera.focalLength = 21.0
+sceneBuilder.addCamera(camera)
