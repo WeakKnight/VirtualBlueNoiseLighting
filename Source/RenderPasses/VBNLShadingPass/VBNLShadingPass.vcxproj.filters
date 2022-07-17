@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ShaderSource Include="BSDFReSTIR.slang">
+      <Filter>ReSTIR</Filter>
+    </ShaderSource>
+    <ShaderSource Include="BSDFReSTIRInitialSampling.cs.slang">
+      <Filter>ReSTIR</Filter>
+    </ShaderSource>
+    <ShaderSource Include="BSDFReSTIRSpatialResampling.cs.slang">
+      <Filter>ReSTIR</Filter>
+    </ShaderSource>
+    <ShaderSource Include="BSDFReSTIRTemporalResampling.cs.slang">
+      <Filter>ReSTIR</Filter>
+    </ShaderSource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="VBNLShading.cs.slang" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="VBNLShadingPass.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="VBNLShadingPasss.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="ReSTIR">
+      <UniqueIdentifier>{5764cd2c-55c7-4432-8839-bf48a96b73a8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

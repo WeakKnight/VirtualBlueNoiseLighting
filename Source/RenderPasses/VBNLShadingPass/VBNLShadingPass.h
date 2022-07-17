@@ -7,10 +7,10 @@
 
 using namespace Falcor;
 
-class BSDFReSTIRPass : public RenderPass
+class VBNLShadingPass : public RenderPass
 {
 public:
-    using SharedPtr = std::shared_ptr<BSDFReSTIRPass>;
+    using SharedPtr = std::shared_ptr<VBNLShadingPass>;
 
     static SharedPtr create(RenderContext* pRenderContext = nullptr, const Dictionary& dict = {});
 
@@ -25,7 +25,7 @@ public:
     virtual bool onKeyEvent(const KeyboardEvent& keyEvent) override;
     virtual void onHotReload(HotReloadFlags reloaded);
 private:
-    BSDFReSTIRPass() = default;
+    VBNLShadingPass() = default;
 
     bool prepareLights(RenderContext* pRenderContext);
     void recompile();

@@ -1,4 +1,4 @@
-#include "BSDFReSTIRPass.h"
+#include "VBNLShadingPass.h"
 #include "Utils/VirtualLight/MegaTextureContainer.h"
 #include "Utils/VirtualLight/VirtualLightContainer.h"
 #include "Utils/Sampling/AliasTable.h"
@@ -69,12 +69,12 @@ extern "C" __declspec(dllexport) const char* getProjDir()
 
 static void regPythonApi(pybind11::module& m)
 {
-    pybind11::class_<BSDFReSTIRPass, RenderPass, BSDFReSTIRPass::SharedPtr> pass(m, "BSDFReSTIRPass");
+    pybind11::class_<VBNLShadingPass, RenderPass, VBNLShadingPass::SharedPtr> pass(m, "VBNLShadingPass");
 }
 
 extern "C" __declspec(dllexport) void getPasses(Falcor::RenderPassLibrary & lib)
 {
-    lib.registerClass("BSDFReSTIRPass", kDesc, BSDFReSTIRPass::create);
+    lib.registerClass("VBNLShadingPass", kDesc, VBNLShadingPass::create);
     ScriptBindings::registerBinding(regPythonApi);
 }
 
@@ -101,9 +101,9 @@ void FillNeighborOffsetBuffer(uint8_t* buffer)
     }
 }
 
-BSDFReSTIRPass::SharedPtr BSDFReSTIRPass::create(RenderContext* pRenderContext, const Dictionary& dict)
+VBNLShadingPass::SharedPtr VBNLShadingPass::create(RenderContext* pRenderContext, const Dictionary& dict)
 {
-    SharedPtr pPass = SharedPtr(new BSDFReSTIRPass);
+    SharedPtr pPass = SharedPtr(new VBNLShadingPass);
     for (const auto& [key, value] : dict)
     {
         if (key == kShortDistance)
@@ -216,30 +216,30 @@ BSDFReSTIRPass::SharedPtr BSDFReSTIRPass::create(RenderContext* pRenderContext, 
     pPass->mpPixelDebug = PixelDebug::create();
 
     Program::Desc restirShadingPassDesc;
-    restirShadingPassDesc.addShaderLibrary("RenderPasses/BSDFReSTIRPass/BSDFReSTIRShading.cs.slang").csEntry("main").setShaderModel("6_5");
+    restirShadingPassDesc.addShaderLibrary("RenderPasses/VBNLShadingPass/VBNLShading.cs.slang").csEntry("main").setShaderModel("6_5");
     pPass->mpShadingPass = ComputePass::create(restirShadingPassDesc, Program::DefineList(), false);
 
     Program::Desc initialSamplingPassDesc;
-    initialSamplingPassDesc.addShaderLibrary("RenderPasses/BSDFReSTIRPass/BSDFReSTIRInitialSampling.cs.slang").csEntry("main").setShaderModel("6_5");
+    initialSamplingPassDesc.addShaderLibrary("RenderPasses/VBNLShadingPass/BSDFReSTIRInitialSampling.cs.slang").csEntry("main").setShaderModel("6_5");
     pPass->mpInitialSamplingPass = ComputePass::create(initialSamplingPassDesc, Program::DefineList(), false);
 
     Program::Desc temporalResamplingPassDesc;
-    temporalResamplingPassDesc.addShaderLibrary("RenderPasses/BSDFReSTIRPass/BSDFReSTIRTemporalResampling.cs.slang").csEntry("main").setShaderModel("6_5");
+    temporalResamplingPassDesc.addShaderLibrary("RenderPasses/VBNLShadingPass/BSDFReSTIRTemporalResampling.cs.slang").csEntry("main").setShaderModel("6_5");
     pPass->mpTemporalResamplingPass = ComputePass::create(temporalResamplingPassDesc, Program::DefineList(), false);
 
     Program::Desc spatialResamplingPassDesc;
-    spatialResamplingPassDesc.addShaderLibrary("RenderPasses/BSDFReSTIRPass/BSDFReSTIRSpatialResampling.cs.slang").csEntry("main").setShaderModel("6_5");
+    spatialResamplingPassDesc.addShaderLibrary("RenderPasses/VBNLShadingPass/BSDFReSTIRSpatialResampling.cs.slang").csEntry("main").setShaderModel("6_5");
     pPass->mpSpatialResamplingPass = ComputePass::create(spatialResamplingPassDesc, Program::DefineList(), false);
 
     return pPass;
 }
 
-std::string BSDFReSTIRPass::getDesc()
+std::string VBNLShadingPass::getDesc()
 {
     return kDesc;
 }
 
-Dictionary BSDFReSTIRPass::getScriptingDictionary()
+Dictionary VBNLShadingPass::getScriptingDictionary()
 {
     Dictionary d;
     d[kShortDistance] = mShortDistance;
@@ -276,7 +276,7 @@ Dictionary BSDFReSTIRPass::getScriptingDictionary()
     return d;
 }
 
-RenderPassReflection BSDFReSTIRPass::reflect(const CompileData& compileData)
+RenderPassReflection VBNLShadingPass::reflect(const CompileData& compileData)
 {
     // Define the required resources here
     RenderPassReflection reflector;
@@ -285,7 +285,7 @@ RenderPassReflection BSDFReSTIRPass::reflect(const CompileData& compileData)
     return reflector;
 }
 
-void BSDFReSTIRPass::execute(RenderContext* pRenderContext, const RenderData& renderData)
+void VBNLShadingPass::execute(RenderContext* pRenderContext, const RenderData& renderData)
 {
     if (mpScene == nullptr)
     {
@@ -598,7 +598,7 @@ void BSDFReSTIRPass::execute(RenderContext* pRenderContext, const RenderData& re
         renderData.getDictionary()["freezeOutput"] = false;
 }
 
-void BSDFReSTIRPass::renderUI(Gui::Widgets& widget)
+void VBNLShadingPass::renderUI(Gui::Widgets& widget)
 {
     if (auto logGroup = widget.group("Logging"))
     {
@@ -772,7 +772,7 @@ void BSDFReSTIRPass::renderUI(Gui::Widgets& widget)
     }
 }
 
-void BSDFReSTIRPass::setScene(RenderContext* pRenderContext, const Scene::SharedPtr& pScene)
+void VBNLShadingPass::setScene(RenderContext* pRenderContext, const Scene::SharedPtr& pScene)
 {
     mpScene = pScene;
 
@@ -791,7 +791,7 @@ void BSDFReSTIRPass::setScene(RenderContext* pRenderContext, const Scene::Shared
     }
 }
 
-bool BSDFReSTIRPass::onKeyEvent(const KeyboardEvent& keyEvent)
+bool VBNLShadingPass::onKeyEvent(const KeyboardEvent& keyEvent)
 {
     if (keyEvent.type == KeyboardEvent::Type::KeyPressed && keyEvent.key == KeyboardEvent::Key::R)
     {
@@ -802,12 +802,12 @@ bool BSDFReSTIRPass::onKeyEvent(const KeyboardEvent& keyEvent)
     return false;
 }
 
-void BSDFReSTIRPass::onHotReload(HotReloadFlags reloaded)
+void VBNLShadingPass::onHotReload(HotReloadFlags reloaded)
 {
     recompile();
 }
 
-bool BSDFReSTIRPass::prepareLights(RenderContext* pRenderContext)
+bool VBNLShadingPass::prepareLights(RenderContext* pRenderContext)
 {
     bool lightingChanged = false;
 
@@ -879,7 +879,7 @@ bool BSDFReSTIRPass::prepareLights(RenderContext* pRenderContext)
     return lightingChanged;
 }
 
-void BSDFReSTIRPass::recompile()
+void VBNLShadingPass::recompile()
 {
     if (!mUseVirtualLight)
     {
@@ -954,7 +954,7 @@ void BSDFReSTIRPass::recompile()
     mNeedRecompile = false;
 }
 
-void BSDFReSTIRPass::recordUserInteraction()
+void VBNLShadingPass::recordUserInteraction()
 {
     if (mRecordUserInteraction)
     {
@@ -991,7 +991,7 @@ void BSDFReSTIRPass::recordUserInteraction()
     }
 }
 
-void BSDFReSTIRPass::replayUserInteraction()
+void VBNLShadingPass::replayUserInteraction()
 {
     if (mReplayUserInteraction)
     {

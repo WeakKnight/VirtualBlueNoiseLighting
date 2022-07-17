@@ -6,16 +6,12 @@ def render_graph_g():
     loadRenderPassLibrary('SampleEliminatePass.dll')
     loadRenderPassLibrary('AccumulatePass.dll')
     loadRenderPassLibrary('DepthPass.dll')
-    loadRenderPassLibrary('ReSTIRPass.dll')
     loadRenderPassLibrary('VirtualLightVisPass.dll')
     loadRenderPassLibrary('PixelInspectorPass.dll')
     loadRenderPassLibrary('Antialiasing.dll')
-    loadRenderPassLibrary('BlitPass.dll')
-    loadRenderPassLibrary('BSDFReSTIRPass.dll')
-    loadRenderPassLibrary('GBuffer.dll')
+    loadRenderPassLibrary('VBNLShadingPass.dll')
     loadRenderPassLibrary('GBufferSlim.dll')
     loadRenderPassLibrary('PrepareLights.dll')
-    loadRenderPassLibrary('SimplePathTracer.dll')
     loadRenderPassLibrary('ToneMapper.dll')
     loadRenderPassLibrary('Utils.dll')
     loadRenderPassLibrary('VirtualLightEstimatePass.dll')
@@ -71,7 +67,7 @@ def render_graph_g():
         'useDMaxForASBuilding': True, 
         'useParallelSE': True})
     g.addPass(SampleEliminatePass, 'SampleEliminatePass')
-    BSDFReSTIRPass = createPass('BSDFReSTIRPass', {
+    VBNLShadingPass = createPass('VBNLShadingPass', {
         'MaxPathIntensity':0.0,
         'BounceNum':256, 
         'enableDirectLighting': True, 
@@ -81,15 +77,15 @@ def render_graph_g():
         'shortDistance': 0.3, 
         'shortDistanceRange':0.15, 
         'MISWithPowerSampling': True})
-    g.addPass(BSDFReSTIRPass, 'BSDFReSTIRPass')
+    g.addPass(VBNLShadingPass, 'VBNLShadingPass')
     PrepareLights = createPass('PrepareLights')
     g.addPass(PrepareLights, 'PrepareLights')
-    g.addEdge('PrepareLights.output', 'BSDFReSTIRPass.input')
+    g.addEdge('PrepareLights.output', 'VBNLShadingPass.input')
     g.addEdge('SampleEliminatePass.output', 'VirtualLightEstimatePass.input')
     g.addEdge('AccumulatePass.output', 'ToneMapper.src')
     g.addEdge('VirtualLightGeneratePass_.output', 'SampleEliminatePass.input')
     g.addEdge('GBufferSlim.output', 'VirtualLightGeneratePass_.input')
-    g.addEdge('BSDFReSTIRPass.output', 'AccumulatePass.input')
+    g.addEdge('VBNLShadingPass.output', 'AccumulatePass.input')
     g.addEdge('VirtualLightEstimatePass.output', 'VirtualLightVisPass.dummy')
     g.addEdge('VirtualLightEstimatePass.output', 'PrepareLights.input')
     g.markOutput('ToneMapper.dst')

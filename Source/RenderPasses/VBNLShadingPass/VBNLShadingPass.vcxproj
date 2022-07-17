@@ -13,9 +13,9 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A011819B-DE6F-4246-AF0A-E7C249639D8D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>BSDFReSTIRPass</RootNamespace>
+    <RootNamespace>VBNLShadingPass</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
-    <ProjectName>BSDFReSTIRPass</ProjectName>
+    <ProjectName>VBNLShadingPass</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -25,12 +25,6 @@
     <Import Project="..\..\Falcor\Falcor.props" />
   </ImportGroup>
   <ItemGroup>
-    <ClCompile Include="BSDFReSTIRPass.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="BSDFReSTIRPass.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\Falcor\Falcor.vcxproj">
       <Project>{2c535635-e4c5-4098-a928-574f0e7cd5f9}</Project>
     </ProjectReference>
@@ -38,9 +32,17 @@
   <ItemGroup>
     <ShaderSource Include="BSDFReSTIR.slang" />
     <ShaderSource Include="BSDFReSTIRInitialSampling.cs.slang" />
-    <ShaderSource Include="BSDFReSTIRShading.cs.slang" />
     <ShaderSource Include="BSDFReSTIRSpatialResampling.cs.slang" />
     <ShaderSource Include="BSDFReSTIRTemporalResampling.cs.slang" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="VBNLShading.cs.slang" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="VBNLShadingPass.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="VBNLShadingPasss.cpp" />
   </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
