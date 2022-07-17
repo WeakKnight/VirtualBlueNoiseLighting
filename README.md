@@ -32,6 +32,3 @@ We show that our method significantly outperforms path tracing and prior work in
 
 ## Run the demo
 - execute `RunTeaserImageOurs.bat`
-
-## Todo:
-* Clean the code and fix some confusing variable names.
