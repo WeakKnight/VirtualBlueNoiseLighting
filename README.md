@@ -21,7 +21,7 @@ We show that our method significantly outperforms path tracing and prior work in
 ## Prerequisites
 - Windows 10 version 20H2 or newer
 - Visual Studio 2019
-- [Windows 10 SDK version 10.0.19041.1 Or Newer] (https://developer.microsoft.com/en-us/windows/downloads/sdk-archive)
+- Windows 10 SDK version 10.0.19041.1 Or Newer
 - NVIDIA driver 466.11 or newer
 - RTX 2060 or Higher (NVIDIA graphics card with raytracing support)
 - Get NVAPI, head over to https://developer.nvidia.com/nvapi and download the latest version of NVAPI. Create a folder called `.packman` under `Source/Externals`, Extract the content of the zip file into `Source/Externals/.packman/` and rename `Rxxx-developer` to `nvapi`.
